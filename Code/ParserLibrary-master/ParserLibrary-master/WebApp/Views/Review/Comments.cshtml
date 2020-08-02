@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebApp.Models.PackageReview>
+@{
+    ViewBag.Title = "Комментарии";
+}
+<table class="table">
+    <tr><td>Дата публикации</td><td>Комментарии</td><td>Реакция</td></tr>
+    @foreach (var item in Model)
+    {
+        string smileImg = (item.Positive == 1) ? "/img/happy.png" : "/img/unhappy.png";
+
+        string url = "https://play.google.com/store/apps/details?id=" + item.Package.Name + "&reviewId=" + item.GpUrl;
+        DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(item.Timestamp);
+    <tr><td>@dateTimeOffset.UtcDateTime.ToString("d")</td><td><a href="@url" target="_blank">@item.Comment</a></td>
+    <td>
+        @if (item.Positive < 0)
+        {
+        <p>-</p>
+        }
+        else { 
+        <img src="@smileImg" width="25" height="25">
+        }
+
+        </td></tr>
+    }
+</table>

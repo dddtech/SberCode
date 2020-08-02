@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebApp.Models.Package>
+@{
+    ViewBag.Title = "Все приложения";
+}
+<a asp-action="Create">Добавить новое приложение</a>
+<table class="table">
+    <tr><td>Package Name</td></tr>
+    @foreach (var item in Model)
+    {
+        <tr><td><a href="/review?packName=@item.Name">@item.Name</a></td></tr>
+    }
+</table>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebApp.Models.CategoryCount>
+@{
+    ViewBag.Title = "Категории комментариев";
+}
+<table class="table">
+    <tr><td>Название категории</td><td>Количество комментариев</td></tr>
+    @foreach (var item in Model)
+    {
+        <tr><td><a href="/review/comments?packName=@item.Package.Name&categoryId=@item.Category.Identificator">@item.Category.Name</a></td><td>@item.Count</td></tr>
+    }
+</table>
